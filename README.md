@@ -23,6 +23,6 @@
 - `appointments` - Қабылдауға жазылулар
 
  🛠 Технологиялар
-- HTML5, CSS3, Bootstrap 5
-- PHP 8.x
+- HTML5, CSS
+- PHP
 - MySQL
