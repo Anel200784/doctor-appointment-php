@@ -1,0 +1,34 @@
+/* Жалпы қаріптер мен фон */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #c6db4f;
+}
+
+/* login.html үшін арнайы орталықтағы фон */
+body.login-body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Басты беттің градиент баннері */
+.hero-section {
+    background: linear-gradient(135deg, #fd6d0d, #cef00d);
+    color: white;
+    padding: 60px 0;
+    border-radius: 0 0 30px 30px;
+}
+
+/* Карточкалар дизайны және анимация */
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Жүйеге кіру - Medicall</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Жеке CSS файлы -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-body">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card p-4 bg-white">
+                    <div class="text-center mb-4">
+                        <h2 class="fw-bold text-primary">Қош келдіңіз!</h2>
+                        <p class="text-muted small">Жүйеге кіру үшін мәліметтеріңізді енгізіңіз</p>
+                    </div>
+                    
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Электронды пошта</label>
+                            <input type="email" class="form-control form-control-lg bg-light border-0" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-medium">Құпия сөз</label>
+                            <input type="password" class="form-control form-control-lg bg-light border-0" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg w-100 rounded-pill mb-3">Кіру</button>
+                        
+                        <div class="text-center">
+                            <p class="text-muted small">Аккаунтыңыз жоқ па? <a href="#" class="text-primary text-decoration-none fw-bold" data-bs-toggle="modal" data-bs-target="#registerModal">Тіркелу</a></p>
+                            <a href="index.html" class="text-secondary small text-decoration-none">← Басты бетке қайту</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Тіркелуге арналған модалды терезе -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 rounded-4 p-3">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold text-primary">Жаңа аккаунт ашу</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Аты-жөні</label>
+                            <input type="text" class="form-control bg-light border-0" placeholder="Азамат Мұратұлы" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Электронды пошта</label>
+                            <input type="email" class="form-control bg-light border-0" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Құпия сөз</label>
+                            <input type="password" class="form-control bg-light border-0" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 rounded-pill py-2">Тіркелуді аяқтау</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Жеке JS файлы -->
+    <script src="script.js"></script>
+</body>
+</html>
