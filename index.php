@@ -1,0 +1,93 @@
+<?php include 'header.php'; ?>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary fs-4" href="index.php">🏥 Medicall</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link active fw-medium" href="index.php">Басты бет</a></li>
+                    <li class="nav-item ms-2"><a class="btn btn-outline-primary px-4 rounded-pill" href="login.php">Кіру</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero-section text-center mb-5">
+        <div class="container py-5">
+            <h1 class="fw-bold display-5 mb-3">Өз дәрігеріңізді табыңыз және онлайн жазылыңыз</h1>
+            <p class="lead mb-4 opacity-75">Емханаға кезекке тұрмай, үйден шықпай-ақ уақытыңызды үнемдеңіз</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card p-3 shadow-lg bg-white border-0 rounded-4">
+                        <div class="row g-2">
+                            <div class="col-md-7">
+                                <input type="text" id="searchInput" class="form-control form-control-lg border-0 bg-light" placeholder="Дәрігердің аты-жөні...">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select form-select-lg border-0 bg-light">
+                                    <option selected>Мамандығы</option>
+                                    <option value="терапевт">Терапевт</option>
+                                    <option value="стоматолог">Стоматолог</option>
+                                    <option value="кардиолог">Кардиолог</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary btn-lg w-100 rounded-3">Іздеу</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <h3 class="fw-bold mb-4 text-dark">Біздің білікті мамандар</h3>
+        <div class="row" id="doctorList">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3 bg-white border-0 rounded-4">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=150&q=80" class="rounded-circle shadow-sm" width="90" height="90" alt="Дәрігер">
+                        </div>
+                        <h5 class="card-title fw-bold text-dark">Др. Айдос Мұратұлы</h5>
+                        <p class="text-primary fw-medium mb-1">Терапевт</p>
+                        <p class="text-muted small mb-3">Өтілі: 8 жыл | Кабинет: 204</p>
+                        <a href="appointment.php" class="btn btn-primary w-100 rounded-pill py-2">Қабылдауға жазылу</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3 bg-white border-0 rounded-4">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=150&q=80" class="rounded-circle shadow-sm" width="90" height="90" alt="Дәрігер">
+                        </div>
+                        <h5 class="card-title fw-bold text-dark">Др. Әсел Қанатқызы</h5>
+                        <p class="text-primary fw-medium mb-1">Стоматолог</p>
+                        <p class="text-muted small mb-3">Өтілі: 5 жыл | Кабинет: 310</p>
+                        <a href="appointment.php" class="btn btn-primary w-100 rounded-pill py-2">Қабылдауға жазылу</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm p-3 bg-white border-0 rounded-4">
+                    <div class="card-body text-center">
+                        <div class="mb-3">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=150&q=80" class="rounded-circle shadow-sm" width="90" height="90" alt="Дәрігер">
+                        </div>
+                        <h5 class="card-title fw-bold text-dark">Др. Ерлан Сейілхан</h5>
+                        <p class="text-primary fw-medium mb-1">Кардиолог</p>
+                        <p class="text-muted small mb-3">Өтілі: 12 жыл | Кабинет: 115</p>
+                        <a href="appointment.php" class="btn btn-primary w-100 rounded-pill py-2">Қабылдауға жазылу</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php include 'footer.php'; ?>
