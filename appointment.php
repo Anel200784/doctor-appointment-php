@@ -2,15 +2,35 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+session_start();
+require_once 'db.php';
+
+// Дәрігердің аты мен мамандығын аламыз
+$doctor_name = $_GET['doctor'] ?? 'Айдос Мұратұлы';
+$doctor_spec = $_GET['spec'] ?? 'Терапевт';
+$full_doctor = "Др. " . $doctor_name . " (" . $doctor_spec . ")";
+
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $patient_name = $_POST['patient_name'] ?? '';
-    $phone = $_POST['phone'] ?? '';
+    $patient_name = trim($_POST['patient_name'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
     $appointment_date = $_POST['appointment_date'] ?? '';
     $appointment_time = $_POST['appointment_time'] ?? '';
     
-    if (!empty($patient_name) && !empty($appointment_date)) {
-        $message = "<div class='alert alert-success text-center mb-4'>Құттықтаймыз, <strong>$patient_name</strong>! Сіз <strong>$appointment_date</strong> күні уақыты <strong>$appointment_time</strong> қабылдауға сәтті жазылдыңыз.</div>";
+    if (!empty($patient_name) && !empty($appointment_date) && !empty($appointment_time)) {
+        try {
+            // Егер қолданушы жүйеге кірген болса оның ID-ін аламыз, кірмесе 0 болады
+            $user_id = $_SESSION['user_id'] ?? 0;
+
+            $stmt = $pdo->prepare("INSERT INTO appointments (user_id, doctor_name, appointment_date, appointment_time) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$user_id, $full_doctor, $appointment_date, $appointment_time]);
+
+            $message = "<div class='alert alert-success text-center mb-4'>Құттықтаймыз, <strong>" . htmlspecialchars($patient_name) . "</strong>! Сіз <strong>$full_doctor</strong> қабылдауына <strong>$appointment_date</strong> күні сағат <strong>$appointment_time</strong> сәтті жазылдыңыз.</div>";
+        } catch (PDOException $e) {
+            $message = "<div class='alert alert-danger text-center mb-4'>Қате орын алды: " . $e->getMessage() . "</div>";
+        }
+    } else {
+        $message = "<div class='alert alert-danger text-center mb-4'>Барлық өрістерді толтырыңыз!</div>";
     }
 }
 ?>
@@ -28,7 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav class="navbar navbar-light bg-white shadow-sm py-3 mb-5">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="index.php">🏥 Medicall</a>
-            <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="index.php">Артқа қайту</a>
+            <div>
+                <a class="btn btn-outline-primary btn-sm rounded-pill px-3 me-2" href="my_appointments.php">Менің жазылымдарым</a>
+                <a class="btn btn-outline-secondary btn-sm rounded-pill px-3" href="index.php">Артқа қайту</a>
+            </div>
         </div>
     </nav>
 
@@ -38,15 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="card p-4 bg-white shadow-sm border-0 rounded-4">
                     <div class="text-center mb-4">
                         <h3 class="fw-bold text-dark">Қабылдауға жазылу</h3>
-                        <p class="text-muted">Таңдалған маман: <strong class="text-primary">Др. Айдос Мұратұлы (Терапевт)</strong></p>
+                        <p class="text-muted">Таңдалған маман: <strong class="text-primary"><?php echo htmlspecialchars($full_doctor); ?></strong></p>
                     </div>
 
                     <?php echo $message; ?>
 
-                    <form action="appointment.php" method="POST">
+                    <form action="appointment.php?doctor=<?php echo urlencode($doctor_name); ?>&spec=<?php echo urlencode($doctor_spec); ?>" method="POST">
                         <div class="mb-3">
                             <label class="form-label fw-medium">Пациенттің аты-жөні</label>
-                            <input type="text" name="patient_name" class="form-control form-control-lg bg-light border-0" placeholder="Толық аты-жөніңізді жазыңыз" required>
+                            <input type="text" name="patient_name" class="form-control form-control-lg bg-light border-0" placeholder="Толық аты-жөніңізді жазыңыз" required value="<?php echo htmlspecialchars($_SESSION['user_name'] ?? ''); ?>">
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-medium">Байланыс телефон нөмірі</label>
